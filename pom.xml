@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
+ <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.preethidevops.tutorial</groupId>
     <artifactId>addressbook</artifactId>
     <packaging>war</packaging>
-    <version>2.0</version>
+    <version>1.0</version>
     <name>Vaadin Addressbook example</name>
 
     <properties>
@@ -491,5 +491,12 @@
             </reporting>
         </profile>
     </profiles>
-
+<distributionManagement>
+    <repository>
+        <id>central</id>
+        <name>trialj89xli-demo-libs-release-releases</name>
+        <url>https://trialj89xli.jfrog.io/artifactory/demo-libs-release</url>
+    </repository>
+</distributionManagement>
 </project>
+<
