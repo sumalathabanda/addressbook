@@ -1,0 +1,42 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('compile') {
+            steps {
+                echo 'compiling the code'
+                sh 'mvn compile'
+            }
+        }
+stage('code review') {
+            steps {
+                echo 'reviewing the code'
+                sh 'mvn pmd:pmd'
+            }
+        }
+        stage('unit test') {
+            steps {
+                echo 'unit testing the code'
+                sh 'mvn test'
+            }
+        }
+        stage('coverage analysis') {
+            steps {
+                echo 'static code coverage analysis of the code'
+                sh 'mvn verify'
+            }
+        }
+        stage('package') {
+            steps {
+                echo 'packaging the code'
+                sh 'mvn package'
+            }
+        }
+        stage('publish the artifacts') {
+            steps {
+                echo 'publishing the artifacts to jfrog'
+                sh 'mvn -U deploy -s build.xml'
+            }
+        }
+    }
+}
