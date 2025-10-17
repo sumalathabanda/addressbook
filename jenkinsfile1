@@ -13,7 +13,7 @@ parameters {
         stage('compile') {
             agent any
             steps {
-                echo "compiling the code in ${params,Env} environment"
+                echo "compiling the code in ${params.Env} environment"
                 sh 'mvn compile'
             }
         }
@@ -27,7 +27,8 @@ stage('code review') {
         stage('unit test') {
             agent any
             when {
-                expression { ${ params.executeTests} }
+                expression { 
+                    params.executeTests == true}
             }
             steps {
                 echo 'unit testing the code'
