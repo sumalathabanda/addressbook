@@ -34,6 +34,11 @@ stage('code review') {
                 echo 'unit testing the code'
                 sh 'mvn test'
             }
+            post{
+                always {
+                    junit 'target/surefire-reports/*.xml'
+                }
+            }
         }
         stage('coverage analysis') {
             agent any
@@ -52,6 +57,10 @@ stage('code review') {
         }
         stage('publish the artifacts') {
             agent any
+            input {
+                message "do you want to publish the artifacts to jfrog"
+                ok "yes, publish"
+            }
             steps {
                 echo 'publishing the artifacts to jfrog'
                 sh 'mvn -U deploy -s build.xml'
